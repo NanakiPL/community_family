@@ -10,33 +10,36 @@ from pywikibot import family
 from pywikibot.tools import deprecated
 
 class Family(family.Family):
-    def __init__(self):
-        family.Family.__init__(self)
-        self.name = 'community'
-        self.langs = {
-            'en': 'community.wikia.com',
-            'de': 'de.community.wikia.com',
-            'es': 'comunidad.wikia.com',
-            'fi': 'yhteiso.wikia.com',
-            'fr': 'communaute.wikia.com',
-            'it': 'it.community.wikia.com',
-            'ja': 'ja.community.wikia.com',
-            'ko': 'ko.community.wikia.com',
-            'nl': 'nl.community.wikia.com',
-            'pl': 'spolecznosc.wikia.com',
-            'pt': 'comunidade.wikia.com',
-            'ru': 'ru.community.wikia.com',
-            'vi': 'congdong.wikia.com',
-            'zh': 'zh.community.wikia.com'
-        }
-        self.languages_by_size = ['en','ru','es','de','pl','fr','pt','zh','it','ja','ko','vi','nl','fi']
-        self.categories_last = self.langs.keys()
-        
-        self.interwiki_putfirst = {k:['en'] for k in self.langs.keys()}
-
+    name = 'community'
+    langs = {
+        'en': 'community.wikia.com',
+        'de': 'de.community.wikia.com',
+        'es': 'comunidad.wikia.com',
+        'fi': 'yhteiso.wikia.com',
+        'fr': 'communaute.wikia.com',
+        'it': 'it.community.wikia.com',
+        'ja': 'ja.community.wikia.com',
+        'ko': 'ko.community.wikia.com',
+        'nl': 'nl.community.wikia.com',
+        'pl': 'spolecznosc.wikia.com',
+        'pt': 'comunidade.wikia.com',
+        'ru': 'ru.community.wikia.com',
+        'vi': 'congdong.wikia.com',
+        'zh': 'zh.community.wikia.com'
+    }
+    languages_by_size = ['en','ru','es','de','pl','fr','pt','zh','it','ja','ko','vi','nl','fi']
+    
+    @property
+    def categories_last(self):
+        return self.langs.keys()
+    
+    @property
+    def interwiki_putfirst(self):
+        return {k:['en'] for k in self.langs.keys()}
+    
     def scriptpath(self, code):
         return ''
-
+    
     @deprecated('APISite.version()')
     def version(self, code):
         return u'1.19.24'
